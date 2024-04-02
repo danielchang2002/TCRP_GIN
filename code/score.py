@@ -26,9 +26,9 @@ def evaluate_new_PDX(net, loader, train_flag, weights=None):
     # evaluate the net on the data in the loader
     net.eval()
 
-    test_predict = torch.zeros(0, 0).cuda()
-    test_label = torch.zeros(0, 0).cuda()
-    cat_test_label = torch.zeros(0, 0).cuda()
+    test_predict = torch.zeros(0, 1).cuda()
+    test_label = torch.zeros(0, 1).cuda()
+    cat_test_label = torch.zeros(0, 1).cuda()
     total_loss = 0
 
     for i, (in_, target, cat_target) in enumerate(loader):
@@ -70,8 +70,8 @@ def evaluate_new(net, loader, train_flag, weights=None):
     # evaluate the net on the data in the loader
     net.eval()
 
-    test_predict = torch.zeros(0, 0).cuda()
-    test_label = torch.zeros(0, 0).cuda()
+    test_predict = torch.zeros(0, 1).cuda()
+    test_label = torch.zeros(0, 1).cuda()
     total_loss = 0
 
     for i, (in_, target) in enumerate(loader):
@@ -113,8 +113,8 @@ def evaluate_cv(net, loader, weights=None):
     # evaluate the net on the data in the loader
     net.eval()
 
-    test_predict = torch.zeros(0, 0).cuda()
-    test_label = torch.zeros(0, 0).cuda()
+    test_predict = torch.zeros(0, 1).cuda()
+    test_label = torch.zeros(0, 1).cuda()
     total_loss = 0
     # print 'In size evaluate'
 
@@ -142,8 +142,8 @@ def evaluate(net, loader, train_flag, weights=None):
     # evaluate the net on the data in the loader
     net.eval()
 
-    test_predict = torch.zeros(0, 0).cuda()
-    test_label = torch.zeros(0, 0).cuda()
+    test_predict = torch.zeros(0, 1).cuda()
+    test_label = torch.zeros(0, 1).cuda()
     total_loss = 0
     # print 'In size evaluate'
 
