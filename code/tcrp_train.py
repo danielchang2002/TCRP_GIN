@@ -27,13 +27,13 @@ parser = argparse.ArgumentParser()
 parser.add_argument(
     "--feature_dic",
     type=str,
-    default="/home-nfs/siqi/TCRP/data/Sorafenib/",
+    default="data/Sorafenib/",
     help="Feature folder",
 )
 parser.add_argument(
     "--model_dic",
     type=str,
-    default="/cellar/users/majianzhu/TCRP/models/",
+    default="models/",
     help="Feature folder",
 )
 parser.add_argument("--drug", type=str, default="AC220", help="Treated drug")
@@ -72,7 +72,7 @@ parser.add_argument(
 parser.add_argument(
     "--tissue_list",
     type=str,
-    default="/home-nfs/siqi/TCRP/data/Sorafenib_tissue_map.pkl",
+    default="data/Sorafenib_tissue_map.pkl",
     help="Cell line list for different tissues, used for defining meta-tasks in the meta-learning phase",
 )
 parser.add_argument(
