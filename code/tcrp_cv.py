@@ -65,7 +65,7 @@ patience = args.patience
 #torch.manual_seed(args.seed)
 
 tissue_list = work_dic + drug + '_tissue_map.pkl' 
-print tissue_list
+print(tissue_list)
 # Load tissue cell line mapping
 with open(tissue_list, 'rb') as f:
 	tissue_map = pickle.load(f)
@@ -91,8 +91,8 @@ for i, test_tissue in enumerate(test_tissue_list):
 
 	best_fewshot_train_loss, best_fewshot_train_corr, best_fewshot_test_loss, best_fewshot_test_corr = meta_learner.train()
 
-	print test_tissue, 'best few-shot train loss', best_fewshot_train_loss, 'best few-shot train corr', best_fewshot_train_corr 
-	print 'best few-shot test loss', best_fewshot_test_loss, 'best few-shot test corr', best_fewshot_test_corr
+	print(test_tissue, 'best few-shot train loss', best_fewshot_train_loss, 'best few-shot train corr', best_fewshot_train_corr) 
+	print('best few-shot test loss', best_fewshot_test_loss, 'best few-shot test corr', best_fewshot_test_corr)
 
 	if best_fewshot_train_corr != -1:
 		best_fewshot_train_corr_list.append(best_fewshot_train_corr)
@@ -100,5 +100,5 @@ for i, test_tissue in enumerate(test_tissue_list):
 	if best_fewshot_test_corr != -1:
 		best_fewshot_test_corr_list.append( best_fewshot_test_corr )
 
-print 'Avg_test corr', np.asarray(best_fewshot_train_corr_list).mean(), np.asarray(best_fewshot_test_corr_list).mean()
+print('Avg_test corr', np.asarray(best_fewshot_train_corr_list).mean(), np.asarray(best_fewshot_test_corr_list).mean())
 

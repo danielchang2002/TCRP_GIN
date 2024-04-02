@@ -52,16 +52,16 @@ class InnerLoop(mlp):
 		for i in range(self.num_updates):
 			
 			#print 'inner step', i,
-			in_, target = train_loader.__iter__().next()
+			in_, target = next(train_loader.__iter__())
 				
 			if i==0:
 				loss, _ = self.forward_pass( in_, target )
 				grads = torch.autograd.grad( loss, self.parameters(), create_graph=True )
 			else:
 				loss, _ = self.forward_pass(in_, target, fast_weights)
-				grads = torch.autograd.grad(loss, fast_weights.values(), create_graph=True)
+				grads = torch.autograd.grad(loss, list(fast_weights.values()), create_graph=True)
 			
-			fast_weights = OrderedDict((name, param - self.step_size*grad) for ((name, param), grad) in zip(fast_weights.items(), grads))	
+			fast_weights = OrderedDict((name, param - self.step_size*grad) for ((name, param), grad) in zip(list(fast_weights.items()), grads))	
 		##### Test net after training, should be better than random ####
 		tr_post_loss, tr_post_acc = evaluate( self, train_loader, 0, fast_weights )
 		val_post_loss, val_post_acc = evaluate( self, val_loader, 0, fast_weights ) 
@@ -70,7 +70,7 @@ class InnerLoop(mlp):
 		#print 'Val Inner step Loss', val_pre_loss, val_post_loss, 'Val Inner step Acc', val_pre_acc, val_post_acc
 		
 		# Compute the meta gradient and return it
-		in_, target = val_loader.__iter__().next()
+		in_, target = next(val_loader.__iter__())
 		
 		loss,_ = self.forward_pass( in_, target, fast_weights ) 
 		loss = loss / in_.size()[0] # normalize loss
