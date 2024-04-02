@@ -4,32 +4,6 @@ import copy
 import torch
 import torch.utils.data as du
 
-"""
-def get_unseen_data_loader( feature, label, cat_label, K ):
-
-	num_sample = feature.shape[0]
-	index_list = np.random.permutation( num_sample )
-	
-	train_index_list = index_list[0:K]
-	test_index_list = index_list[K:]
-
-	train_feature = torch.FloatTensor( feature[train_index_list,:] )
-	train_label = torch.FloatTensor( label[train_index_list,:] )
-
-	test_feature = torch.FloatTensor( feature[test_index_list,:] )
-	test_label = torch.FloatTensor( label[test_index_list,:] )
-	cat_test_label = torch.FloatTensor( cat_label[test_index_list,:] )
-
-	train_dataset = du.TensorDataset( train_feature.cuda(), train_label.cuda() )
-	train_loader = du.DataLoader( train_dataset, batch_size=train_feature.size(0))
-
-	test_dataset = du.TensorDataset( test_feature.cuda(), test_label.cuda(), cat_test_label.cuda() )
-	test_loader = du.DataLoader( test_dataset, batch_size=test_feature.size(0))
-
-	return train_loader, test_loader
-"""
-
-
 def get_observed_data_loader(
     feature, label, tissue_index_list, K, batch_size, tissue_num
 ):
